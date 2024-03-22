@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            box-sizing: border-box;
+        }
+        .div1{
+            border: 1px solid #6990b3;
+            width: 730px;
+            height: 500px;
+            background: #deebf7;
+        }
+        .div2{
+            border: 1px solid #e1e2e1;
+            background: #ededed;
+            width: 400px;
+            height: 430px;
+            margin: 30px 150px;
+        }
+        .div3{
+            margin-top: 60px;
+            margin-left: 30px;
+            border: 1px solid black;
+            font-family: initial;
+        }
+        .div > input{
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"> <!--전체를 감싸는 div-->
+        <div class="div2"> <!--창을 감싸는 div-->
+            <div class="div3">
+                <div></div>
+                <strong>아이디</strong> <input type="text" style="background: none;"> <br> <br>
+                <strong>패스워드</strong> <br> <br>
+                <strong>패스워드 확인</strong> <br> <br>
+                <strong>이메일</strong> <br> <br>
+                <strong>주소</strong> <br> <br>
+                <button type="button" class="btn btn-success">가입</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
