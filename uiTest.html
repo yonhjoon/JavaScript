@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>UI 구현</title>
     <style>
-
         body {
             width: 100%;
             height: 100vh;
@@ -16,7 +15,7 @@
             justify-content: center;
         }
 
-        #div1 {
+        #container {
             width: 700px;
             height: max-content;
             border: 3px solid #e0e1e0;
@@ -70,7 +69,7 @@
 
       
 
-        #div1>button {
+        #container>button {
             margin: 0 5%;
             height: 120px;
             width: 90%;
@@ -100,7 +99,7 @@
             bottom: -35px;
         }
 
-        .check_text{
+        .check_required_text{
             color: red;
             font-size: 12px;
             position: absolute;
@@ -111,28 +110,28 @@
 </head>
 
 <body>
-    <div id="div1">
-
+    <div id="container">
         <table>
             <tr>
                 <td>아이디</td>
                 <td>
                     <input id="user_id" type="text" required onblur="checkIput(this.id);">
-                    <span id="user_id_required" class="check_text hidden">필수 입력 항목 입니다</span>
+                    <span id="user_id_required" class="check_required_text hidden">필수 입력 항목 입니다</span>
                 </td>
             </tr>
+            <tr>
                 <td>패스워드</td>
                 <td>
                     <input id="user_password" type="password" onblur="checkIput(this.id);" onkeyup="passwordCheck(this.value)" required>
-                    <span id="user_validate" class="check_pwd_text hidden">영문자 대/소문자 특수문자, 숫자 포함 8 ~ 32자</span>
-                    <span id="user_equired" class="check_text hidden">필수 입력 항목 입니다</span>
+                    <span id="user_password_validate" class="check_pwd_text hidden">영문자 대/소문자 특수문자, 숫자 포함 8 ~ 32자</span>
+                    <span id="user_password_required" class="check_required_text hidden">필수 입력 항목 입니다</span>
                 </td>
             </tr>
             <tr>
                 <td>패스워드 확인</td>
                 <td>
                     <input id="pwd_check" type="password" required onblur="checkIput(this.id);">
-                    <span id="pwd_check_required" class="check_text hidden">필수 입력 항목 입니다</span>
+                    <span id="pwd_check_required" class="check_required_text hidden">필수 입력 항목 입니다</span>
                 </td>
             </tr>
             <tr>
@@ -142,42 +141,42 @@
                     <input type="text" class="email">
                 </td>
             </tr>
-                    <td>주소</td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="text"></td>
-                </tr>
-            </table>
-            <button>가 입</button>
+            <tr>
+                <td>주소</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text"></td>
+            </tr>
+        </table>
+        <button>가 입</button>
     </div>
+    <script>
+        function passwordCheck(pwd) {
+            const regRxp = /^(?=.*[a-zA-Z])(?=.*[\d])(?=.*[!@#$%^&*()_+|~\-={}[\]:;<>?,./])[A-Za-z\d!@#$%^&*()_+|~\-={}[\]:;<>?,./]{8,32}$/;
+            const hiddenArea = document.getElementById("user_password_validate");
+            console.log(pwd)
+            console.log(!regRxp.test(pwd))
+            if(!regRxp.test(pwd)) {
+                hiddenArea.classList.remove("hidden");
+                return;
+            } else {
+                hiddenArea.classList.add("hidden");
+            }
+        }
+
+        function checkIput(id) {
+            const checkValue = document.getElementById(id).value;
+            const hiddenId = document.getElementById(id + "_required");
+            
+            if(checkValue === "") {
+                hiddenId.classList.remove("hidden");
+            } else {
+                hiddenId.classList.add("hidden");
+            }
+        }
+    </script>
 </body>
-
-<script>
-    function passwordCheck(pwd) {
-        const regRxp = /^(?=.*[a-zA-Z])(?=.*[\d])(?=.*[!@#$%^&*()_+|~\-={}[\]:;<>?,./])[A-Za-z\d!@#$%^&*()_+|~\-={}[\]:;<>?,./]{8,32}$/;
-        const hiddenArea = document.getElementById("user_password_validate");
-        console.log(pwd)
-        console.log(!regRxp.test(pwd))
-        if(!regRxp.test(pwd)) {
-            hiddenArea.classList.remove("hidden");
-            return;
-        } else {
-            hiddenArea.classList.add("hidden");
-        }
-    }
-
-    function checkIput(id) {
-        const checkValue = document.getElementById(id).value;
-        const hiddenId = document.getElementById(id + "_required");
-        
-        if(checkValue === "") {
-            hiddenId.classList.remove("hidden");
-        } else {
-            hiddenId.classList.add("hidden");
-        }
-    }
-</script>
 
 </html>
